@@ -75,7 +75,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    root("assets") # Django will NOT create this. 
+    root("assets"), # Django will NOT create this. 
 )
 
 # List of finder classes that know how to find static files in
@@ -112,7 +112,7 @@ ROOT_URLCONF = 'diggit.urls'
 WSGI_APPLICATION = 'diggit.wsgi.application'
 
 TEMPLATE_DIRS = (
-    root("templates") # Django will NOT create this
+    root("templates"), # Django will NOT create this
 )
 
 DJANGO_APPS = (
@@ -137,6 +137,10 @@ LOCAL_APPS = (
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
