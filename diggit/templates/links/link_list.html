@@ -1,9 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
 <ol>
 {% for link in object_list %}
-	<li>
+	<li> 
+		<span> [{{ link.votes }}] </span>
 		<a href="{{ link.url }}">
-			<p class="title">{{ link.title }} </p>
+			<span class="title"> {{ link.title }} </span>
 		</a>
 	</li>
 {% endfor %}
 </ol>
+{% endblock %}
