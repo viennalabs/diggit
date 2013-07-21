@@ -125,7 +125,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'links' #this obviously needs to be moved after i've split INSTALLED_APPS
+    'links', #this obviously needs to be moved after i've split INSTALLED_APPS
+    'diggit',
 )
 
 # A sample logging configuration. The only tangible logging
