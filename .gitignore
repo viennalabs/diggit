@@ -1,3 +1,4 @@
 *.pyc
 .DS_Store
 diggit/settings/local.py
+styles.zip

@@ -3,6 +3,8 @@
 import os
 import dj_database_url
 
+from django.core.urlresolvers import reverse_lazy
+
 # https://snipt.net/kennethlove/django-absolute-paths-for-settingspy/
 # here() gives us file paths from the root of the system to the directory
 # holding the current file.
@@ -129,7 +131,9 @@ DJANGO_APPS = (
     
 )
 
-THIRD_PARTY_APPS = ()
+THIRD_PARTY_APPS = (
+    'registration', #this is for django-registration. take out when switching to django-allauth
+)
 
 LOCAL_APPS = (
     'links', 
@@ -137,6 +141,10 @@ LOCAL_APPS = (
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+LOGIN_URL = reverse_lazy("login")
+LOGIN_REDIRECT_URL = reverse_lazy("home")
+LOGOUT_URL = reverse_lazy("logout")
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
