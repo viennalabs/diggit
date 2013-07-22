@@ -17,7 +17,7 @@ class UserProfileInline(admin.StackedInline):
 	can_delete = False
 
 class UserProfileAdmin(UserAdmin):
-	inlines = (UserProfileInline, )
+	inlines = (UserProfileInline, ) # ?? something missing ??
 
 admin.site.unregister(get_user_model())
 admin.site.register(get_user_model(), UserProfileAdmin)

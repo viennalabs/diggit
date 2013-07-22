@@ -3,7 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-from links.views import LinkListView
+from links.views import LinkListView, UserProfileDetailView
 
 urlpatterns = patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
@@ -17,5 +17,5 @@ urlpatterns = patterns('',
     url(r"^logout/$", "django.contrib.auth.views.logout_then_login", name="logout"),
 
     url(r"^accounts/", include("registration.backends.simple.urls")), #take note that I've specified just a beginning here, no end ($). the registration package appends /register.
-
+    url(r"^users/(?P<slug>\w+)/$", UserProfileDetailView.as_view(), name="profile"),
 )
