@@ -36,12 +36,16 @@
         .footer a {
             color: #bbbbff;
         }
+        .searchbar {
+        	padding-bottom: 10px
+        }
+
 	</style>
 </head>
 
 <body>
 	
-	<div class="nav-tabs header">
+	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner container-fluid nav-elements">
 	
 			{% if user.is_authenticated %}
@@ -52,11 +56,11 @@
 			<li><a href="{% url 'login' %}">Login</a></li>
 			</ul>
 			{% endif %}
-			<span class="searchbar">
+			<form class="searchbar">
 				<input type="text" class="search-query pull-right" placeholder="Search" id="searchbar">
-			</span>	
+			</form>	
 			
-	</div>
+		</div>
 	<div class="offset1">
 		<h1 class="">Diggit!</h1>
 		{% block content %}
