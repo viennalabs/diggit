@@ -2,31 +2,34 @@
 <head>
 	<title>Diggit!</title>
 	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.min.css">
+	
 </head>
 <body>
-	<ul class="nav nav-tabs">
-    	<li><a href="{% url 'home' %}">Home</a></li> 
-		{% if user.is_authenticated %}
-		<li><a href="{% url 'logout' %}">Logout</a></li>
-    	<li><a href="{% url 'profile' slug=user.username %}">{{ user.username }}'s profile</a></li>
-		{% else %}
-		<li><a href="{% url 'registration_register' %}">Sign up</a></li>
-		<li><a href="{% url 'login' %}">Login</a></li>
-		<!--
-		<li>
-			<form class="navbar-search pull-left">
-				<input type="text" class="search-query" placeholder="Search" id="searchbar">
-			</form>
-		</li>
-		-->
-		{% endif %}
+	<div class="header">
+		<ul class="nav nav-tabs">
+			<li><a href="{% url 'home' %}">Home</a></li> 
+			{% if user.is_authenticated %}
+			<li><a href="{% url 'logout' %}">Logout</a></li>
+			<li><a href="{% url 'profile' slug=user.username %}">{{ user.username }}'s profile</a></li>
+			{% else %}
+			<li><a href="{% url 'registration_register' %}">Sign up</a></li>
+			<li><a href="{% url 'login' %}">Login</a></li>
+			<!--
+			<li>
+				<form class="navbar-search pull-left">
+					<input type="text" class="search-query" placeholder="Search" 	id="searchbar">
+				</form>
+			</li>
+			-->
+			{% endif %}
 	</ul>
-	<ul class="nav nav-pills">
-		<li class="span6"><h1>Diggit!</h1></li>
-	</ul>
+</div>
+<div class="offset1">
+	<h1 class="">Diggit!</h1>
 	<div class="container">
 		{% block content %}
 		{% endblock %}
 	</div>
+</div>
 </body>
 </html>
