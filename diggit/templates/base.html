@@ -13,12 +13,6 @@
 		font-size: 18px;
 		line-height: 30px;
 		}
-		
-		body {
-		}
-		.header {
-			
-		}
 		.searchbar {
 
 		}
@@ -35,9 +29,13 @@
 		.logout-header a {
 			color: #dddddd;
 		}
-		.nav-elements {
-			
-		}
+		.footer p {
+            font-size: 16px;
+            color: #cccccc;
+        }
+        .footer a {
+            color: #bbbbff;
+        }
 	</style>
 </head>
 
@@ -45,28 +43,30 @@
 	
 	<div class="nav-tabs header">
 		<div class="navbar-inner container-fluid nav-elements">
+	
+			{% if user.is_authenticated %}
+			<a href="{% url 'profile' slug=user.username %}" class="username-header">{{ user.username }}</a><span class="logout-header">(<a href="{% url 'logout' %}">Logout</a>)</span>
+			{% else %}
+			<ul class="nav">
+			<li><a href="{% url 'registration_register' %}">Sign up</a></li>
+			<li><a href="{% url 'login' %}">Login</a></li>
+			</ul>
+			{% endif %}
+			<span class="searchbar">
+				<input type="text" class="search-query pull-right" placeholder="Search" id="searchbar">
+			</span>	
 			
-				
-				{% if user.is_authenticated %}
-				<a href="{% url 'profile' slug=user.username %}" class="username-header">{{ user.username }}</a><span class="logout-header">(<a href="{% url 'logout' %}">Logout</a>)</span>
-				{% else %}
-				<ul class="nav">
-				<li><a href="{% url 'registration_register' %}">Sign up</a></li>
-				<li><a href="{% url 'login' %}">Login</a></li>
-				</ul>
-				{% endif %}
-				<span class="searchbar">
-					<input type="text" class="search-query pull-right" placeholder="Search" id="searchbar">
-				</span>	
-
-		
 	</div>
 	<div class="offset1">
 		<h1 class="">Diggit!</h1>
-		<div class="container">
 		{% block content %}
 		{% endblock %}
-		</div>
 	</div>
+
+	<div class="navbar navbar-static-bottom footer">
+    	<div class="span12">
+    		<p>This work is licensed under the <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC By-SA 3.0</a>. Be nice and drink tea.</p>
+   		</div>
+   	</div>
 </body>
 </html>
