@@ -1,12 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+	<style type="text/css">
+		div.links-div li {
+			list-style-type: decimal;
+			padding-top: 1%;
+			padding-bottom: 1%;
+			font-size: 18px;
+			line-height: 30px;
+			}
+		.votecount {
+			color: #bbbbbb;
+		}
+	</style>
 	<div class="links-div">
+
+		{% if is_paginated %}
+		<ol start="{{ page_obj.start_index }}">
+		{% else %}
 		<ol>
+		{% endif %}
+		
 		{% for link in object_list %}
 			<li> 
-				<span> [{{ link.votes }}] </span>
+				<span class="votecount"> [{{ link.votes }}] </span>
 				<a href="{{ link.url }}">
 				<span class="title"> {{ link.title }} </span>
 				</a>

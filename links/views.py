@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse #does a reverse lookup of the url
 class LinkListView(ListView):
 	model = Link
 	queryset = Link.with_votes.all()
-	paginate_by = 5
+	paginate_by = 10
 
 class UserProfileDetailView(DetailView):
 	model = get_user_model()
