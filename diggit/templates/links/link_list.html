@@ -1,33 +1,26 @@
 {% extends "base.html" %}
 
-<style type="text/css">
-		ol.link-list {
-			list-style-type: none;
-		}
-		ol.link-list li {
-				padding-top: 1%;
-				padding-bottom: 1%;
-				font-size: 18px;
-				line-height: 30px;
-			}
-</style>
-
 {% block content %}
-<ol class="link-list">
-{% for link in object_list %}
-	<li> 
-		<span> [{{ link.votes }}] </span>
-		<a href="{{ link.url }}">
-			<span class="title"> {{ link.title }} </span>
-		</a>
-	</li>
-{% endfor %}
-</ol>
-{% if is_paginated %}
-<div class="pagination">
-	{% if page_obj.has_next %}
-	<a href="?page={{ page_obj.next_page_number }}"><button class="btn">More &raquo;</button></a>
+
+	<div class="links-div">
+		<ol>
+		{% for link in object_list %}
+			<li> 
+				<span> [{{ link.votes }}] </span>
+				<a href="{{ link.url }}">
+				<span class="title"> {{ link.title }} </span>
+				</a>
+			</li>
+		{% endfor %}
+		</ol>
+	</div>
+		
+	{% if is_paginated %}
+	<div class="pagination">
+		{% if page_obj.has_next %}
+		<a href="?page={{ page_obj.next_page_number }}"><button class="btn">More &raquo;</button></a>
+		{% endif %}
+	</div>
 	{% endif %}
-</div>
-{% endif %}
+	
 {% endblock %}

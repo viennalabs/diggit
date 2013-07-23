@@ -1,35 +1,72 @@
 <html>
+
 <head>
 	<title>Diggit!</title>
 	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.min.css">
-	
+
+	<style type="text/css">
+
+		div.links-div li {
+		list-style-type: none;
+		padding-top: 1%;
+		padding-bottom: 1%;
+		font-size: 18px;
+		line-height: 30px;
+		}
+		
+		body {
+		}
+		.header {
+			
+		}
+		.searchbar {
+
+		}
+		.username-header {
+			font-weight: bold;
+			font-size: 28px;
+			vertical-align: middle;
+		}
+		.logout-header {
+			font-size: 14px;
+			vertical-align: middle;
+			color: #dddddd;
+		}
+		.logout-header a {
+			color: #dddddd;
+		}
+		.nav-elements {
+			
+		}
+	</style>
 </head>
+
 <body>
-	<div class="header">
-		<ul class="nav nav-tabs">
-			<li><a href="{% url 'home' %}">Home</a></li> 
-			{% if user.is_authenticated %}
-			<li><a href="{% url 'logout' %}">Logout</a></li>
-			<li><a href="{% url 'profile' slug=user.username %}">{{ user.username }}'s profile</a></li>
-			{% else %}
-			<li><a href="{% url 'registration_register' %}">Sign up</a></li>
-			<li><a href="{% url 'login' %}">Login</a></li>
-			<!--
-			<li>
-				<form class="navbar-search pull-left">
-					<input type="text" class="search-query" placeholder="Search" 	id="searchbar">
-				</form>
-			</li>
-			-->
-			{% endif %}
-	</ul>
-</div>
-<div class="offset1">
-	<h1 class="">Diggit!</h1>
-	<div class="container">
+	
+	<div class="nav-tabs header">
+		<div class="navbar-inner container-fluid nav-elements">
+			
+				
+				{% if user.is_authenticated %}
+				<a href="{% url 'profile' slug=user.username %}" class="username-header">{{ user.username }}</a><span class="logout-header">(<a href="{% url 'logout' %}">Logout</a>)</span>
+				{% else %}
+				<ul class="nav">
+				<li><a href="{% url 'registration_register' %}">Sign up</a></li>
+				<li><a href="{% url 'login' %}">Login</a></li>
+				</ul>
+				{% endif %}
+				<span class="searchbar">
+					<input type="text" class="search-query pull-right" placeholder="Search" id="searchbar">
+				</span>	
+
+		
+	</div>
+	<div class="offset1">
+		<h1 class="">Diggit!</h1>
+		<div class="container">
 		{% block content %}
 		{% endblock %}
+		</div>
 	</div>
-</div>
 </body>
 </html>
