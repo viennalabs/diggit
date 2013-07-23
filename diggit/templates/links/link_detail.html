@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style type="text/css">
+	.link-detail h2{
+		font-size: 24px;
+	}
+	.link-detail p {
+		font-size: 20px;
+		color: #bbbbbb;
+	}
+	.link-submitter p {
+		color: #bbbbbb;
+	}
+</style>
+
+<div class="hero-unit">
+	<div class="link-detail">
+		<h2><a href="{{ object.link }}">{{ object.title }}</a></h2>
+
+		<div class="desc">
+		{{ object.description }}
+		</div>
+	</div class="link-submitter">
+		<p>Submitted by <a href='{% url "profile" slug=object.submitter%}'>{{ object.submitter }}</a></p>
+	</div>
+
+{% endblock %}

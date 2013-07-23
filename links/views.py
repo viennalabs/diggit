@@ -1,14 +1,29 @@
 from django.views.generic import ListView, DetailView
 from .models import Link, Vote, UserProfile
-from .forms import UserProfileForm
+from .forms import UserProfileForm, LinkForm
 from django.contrib.auth import get_user_model
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, CreateView
 from django.core.urlresolvers import reverse #does a reverse lookup of the url
 
 class LinkListView(ListView):
 	model = Link
 	queryset = Link.with_votes.all()
 	paginate_by = 10
+
+class LinkCreateView(CreateView):
+	model = Link
+	form_class = LinkForm
+
+	#overwrite form_valid() to save excluded (forms.py) fields
+	def form_valid(self, form):
+		f = form.save(commit=False)
+		f.rank_score = 0.0
+		f.submitter = self.request.user
+		f.save()
+		return super(LinkCreateView, self).form_valid(form)
+
+class LinkDetailView(DetailView):
+	model = Link
 
 class UserProfileDetailView(DetailView):
 	model = get_user_model()
