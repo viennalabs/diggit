@@ -25,6 +25,7 @@ class Link(models.Model):
 
 	def get_absolute_url(self):
 		return reverse("link_detail", kwargs={"pk": str(self.id)})
+		
 class Vote(models.Model):
 	voter = models.ForeignKey(User)
 	link = models.ForeignKey(Link)
