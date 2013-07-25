@@ -13,6 +13,9 @@
 	.link-submitter p {
 		color: #bbbbbb;
 	}
+	.buttons {
+		margin-top: 20px;
+	}
 </style>
 
 <div class="hero-unit">
@@ -25,6 +28,16 @@
 		<div class="desc">
 		{{ object.description }}
 		</div>
+	</div>
+	<div class="buttons">
+		{% if object.submitter == user %}
+			<button class="btn">
+				<a href="{% url 'link_update' pk=object.pk %}">Edit</a>
+			</button>
+			<button class="btn">
+				<a href="{% url 'link_delete' pk=object.pk %}">Delete</a>
+			</button>
+		{% endif %}
 	</div>
 </div>
 {% endblock %}

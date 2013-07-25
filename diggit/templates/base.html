@@ -37,8 +37,8 @@
         }
         .header-elements {
         	position: absolute;
-        	top: 30%;
-        	padding-left: 18%;
+        	top: 32%;
+        	padding-left: 12.5%;
 
         }
         .header-search {
@@ -68,7 +68,7 @@
 				</a>
 			<div class="header-elements">		
 				<a href="{% url 'profile' slug=user.username %}" class="username-header">
-					{{ user.username }}
+					 {{ user.username }}
 				</a>
 				
 				<span class="logout-header">(<a href="{% url 'logout' %}">Logout</a>)</span>
@@ -83,7 +83,7 @@
 				<a href="{% url 'home' %}" class="offset2">Home</a>
 				{% if user.is_authenticated %}
 				<span> | </span>
-				<a href="{ % url 'link_create' %}">Submit Link</a>
+				<a href="{% url 'link_create' %}">Submit Link</a>
 				{% endif %}
 			</div>
 			<div class="header-search">	

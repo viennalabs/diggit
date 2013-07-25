@@ -2,8 +2,8 @@ from django.views.generic import ListView, DetailView
 from .models import Link, Vote, UserProfile
 from .forms import UserProfileForm, LinkForm
 from django.contrib.auth import get_user_model
-from django.views.generic.edit import UpdateView, CreateView
-from django.core.urlresolvers import reverse #does a reverse lookup of the url
+from django.views.generic.edit import UpdateView, CreateView, DeleteView
+from django.core.urlresolvers import reverse, reverse_lazy #does a reverse lookup of the url
 
 class LinkListView(ListView):
 	model = Link
@@ -34,6 +34,14 @@ class UserProfileDetailView(DetailView):
 		user = super(UserProfileDetailView, self).get_object(queryset)
 		UserProfile.objects.get_or_create(user=user)
 		return user
+
+class LinkUpdateView(UpdateView):
+	model = Link
+	form_class = LinkForm
+
+class LinkDeleteView(DeleteView):
+	model = Link
+	success_url = reverse_lazy("home")
 
 class UserProfileEditView(UpdateView):
 	model = UserProfile

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style type="text/css">
+	.buttons {
+		margin-top: 20px;
+	}
+</style>
+
+<div class="hero-unit">
+	<h2>Are you sure you want to delete "{{ object.title }}"?</h2>
+
+	<form method="post" action="{% url 'link_delete' pk=object.pk %}">
+		{% csrf_token %}
+		<div class="buttons">
+			<a href="{% url 'link_detail' pk=object.pk %}">
+				<button class="btn" form="none">Go back</button>
+			</a>
+			<button class="btn">Confirm deletion</button>
+		</div>	
+	</form> 
+</div>
+
+{% endblock %}
