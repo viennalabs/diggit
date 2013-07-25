@@ -10,7 +10,10 @@
 			line-height: 30px;
 			}
 		.votecount {
-			color: #bbbbbb;
+			color: #aaaaaa;
+		}
+		.direct {
+			color: #aaaaaa;
 		}
 	</style>
 	<div class="links-div">
@@ -24,8 +27,11 @@
 		{% for link in object_list %}
 			<li> 
 				<span class="votecount"> [{{ link.votes }}] </span>
+				<a href="{% url 'link_detail' pk=link.pk %}">
+					<span class="title"> {{ link.title }} </span>
+				</a>
 				<a href="{{ link.url }}">
-				<span class="title"> {{ link.title }} </span>
+					<small class="direct"> (Direct Link)</small>
 				</a>
 			</li>
 		{% endfor %}

@@ -17,13 +17,14 @@
 
 <div class="hero-unit">
 	<div class="link-detail">
-		<h2><a href="{{ object.link }}">{{ object.title }}</a></h2>
+		<h2>
+			<a href="{{ object.link }}">{{ object.title }}</a>
+			<small class="link-submitter">  -  Submitted by <a href='{% url "profile" slug=object.submitter%}'>{{ object.submitter }}</a></small>
+		</h2>
 
 		<div class="desc">
 		{{ object.description }}
 		</div>
-	</div class="link-submitter">
-		<p>Submitted by <a href='{% url "profile" slug=object.submitter%}'>{{ object.submitter }}</a></p>
 	</div>
-
+</div>
 {% endblock %}
